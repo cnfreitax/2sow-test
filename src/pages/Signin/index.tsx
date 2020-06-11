@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 import { uuid } from 'uuidv4';
 import { useHistory } from 'react-router-dom';
 
@@ -12,6 +12,14 @@ const Signin: React.FC = () => {
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [hasError, setHasError] = useState('');
+
+  useEffect(() => {
+    const hasToken = localStorage.getItem('@2sow:token');
+
+    if (hasToken) {
+      history.push('/dashboard');
+    }
+  }, [history]);
 
   async function handleValidateUser(
     event: FormEvent<HTMLFormElement>,

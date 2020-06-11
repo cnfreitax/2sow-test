@@ -12,7 +12,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 
   align-items: center;
 
@@ -22,6 +22,11 @@ export const Content = styled.div`
     width: 250px;
     margin: 50px 0;
     text-align: center;
+
+    img {
+      width: 86px;
+      height: 86px;
+    }
 
     h1 {
       color: #fff;
@@ -71,4 +76,11 @@ export const Background = styled.div`
   flex: 1;
   background: url(${background}) no-repeat center;
   background-size: cover;
+`;
+
+export const Error = styled.span`
+  display: block;
+  color: #c53030;
+  margin-top: 10px;
+  font-size: 20px;
 `;

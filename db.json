@@ -1,3 +1,37 @@
 {
-  "usuarios": []
+  "usuarios": [
+    {
+      "name": "Victor Freitas",
+      "cpf": "123.545.854.58",
+      "email": "victor@gmail.com",
+      "address": {
+        "cep": "12152-545",
+        "streat": "Av. Resedá",
+        "neighborhood": "Portal dos Ipes",
+        "city": "Cajamar"
+      }
+    },
+    {
+      "name": "Beatriz Chequetto",
+      "cpf": "524.145.854.58",
+      "email": "beatriz@gmail.com",
+      "address": {
+        "cep": "12342-545",
+        "streat": "Valson Lopes",
+        "neighborhood": "Butantã",
+        "city": "São Paulo"
+      }
+    },
+    {
+      "name": "Pedro Brioso",
+      "cpf": "968.536.869.18",
+      "email": "pedro@gmail.com",
+      "address": {
+        "cep": "13112-545",
+        "streat": "R. Guaipa",
+        "neighborhood": "Leopoldina",
+        "city": "São Paulo"
+      }
+    }
+  ]
 }

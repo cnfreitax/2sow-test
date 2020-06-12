@@ -1,8 +1,17 @@
 import React, { useCallback } from 'react';
-import { FiUser, FiPower } from 'react-icons/fi';
+import { FiUser, FiPower, FiSearch, FiTrash2, FiEdit } from 'react-icons/fi';
 import { useHistory, Link } from 'react-router-dom';
 
-import { Container, Header } from './styles';
+import {
+  Container,
+  Header,
+  Content,
+  Title,
+  Form,
+  Users,
+  User,
+  Options,
+} from './styles';
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
@@ -27,6 +36,137 @@ const Dashboard: React.FC = () => {
           </button>
         </div>
       </Header>
+
+      <Content>
+        <Title>
+          Adicione, liste
+          <span> & </span>
+          explore por usuários cadastrados
+        </Title>
+        <Form>
+          <input type="text" placeholder="Digite um nome" />
+          <button type="button">
+            <FiSearch />
+          </button>
+        </Form>
+
+        <Users>
+          <User>
+            <Options>
+              <button type="button">
+                <FiEdit />
+              </button>
+              <button type="button">
+                <FiTrash2 />
+              </button>
+            </Options>
+
+            <img
+              src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
+              alt="Victor Freitas"
+            />
+            <strong>Victor Freitas</strong>
+            <div>
+              <strong>CPF:</strong>
+              <p>655.365.365-85</p>
+            </div>
+            <div>
+              <strong>E-mail:</strong>
+              <p>victor@gmail.com</p>
+            </div>
+            <div>
+              <strong>Endereço:</strong>
+              <p>Av. Resedá, 235</p>
+            </div>
+          </User>
+          <User>
+            <Options>
+              <button type="button">
+                <FiEdit />
+              </button>
+              <button type="button">
+                <FiTrash2 />
+              </button>
+            </Options>
+
+            <img
+              src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
+              alt="Victor Freitas"
+            />
+            <strong>Victor Freitas</strong>
+            <div>
+              <strong>CPF:</strong>
+              <p>655.365.365-85</p>
+            </div>
+            <div>
+              <strong>E-mail:</strong>
+              <p>victor@gmail.com</p>
+            </div>
+            <div>
+              <strong>Endereço:</strong>
+              <p>Av. Resedá, 235</p>
+            </div>
+          </User>
+
+          <User>
+            <Options>
+              <button type="button">
+                <FiEdit />
+              </button>
+              <button type="button">
+                <FiTrash2 />
+              </button>
+            </Options>
+
+            <img
+              src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
+              alt="Victor Freitas"
+            />
+            <strong>Victor Freitas</strong>
+            <div>
+              <strong>CPF:</strong>
+              <p>655.365.365-85</p>
+            </div>
+            <div>
+              <strong>E-mail:</strong>
+              <p>victor@gmail.com</p>
+            </div>
+            <div>
+              <strong>Endereço:</strong>
+              <p>Av. Resedá, 235</p>
+            </div>
+          </User>
+
+          <User>
+            <Options>
+              <button type="button">
+                <FiEdit />
+              </button>
+              <button type="button">
+                <FiTrash2 />
+              </button>
+            </Options>
+
+            <img
+              src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
+              alt="Victor Freitas"
+            />
+            <strong>Victor Freitas</strong>
+            <div>
+              <strong>CPF:</strong>
+              <p>655.365.365-85</p>
+            </div>
+            <div>
+              <strong>E-mail:</strong>
+              <p>victor@gmail.com</p>
+            </div>
+            <div>
+              <strong>Endereço:</strong>
+              <p>Av. Resedá, 235</p>
+            </div>
+          </User>
+        </Users>
+      </Content>
     </Container>
   );
 };

@@ -59,7 +59,7 @@ export const Header = styled.header`
 
 export const Content = styled.div`
   width: 100%;
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
 
   padding: 40px 20px;
@@ -120,7 +120,7 @@ export const Form = styled.form`
 
 export const Users = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 24px;
   list-style: none;
   margin-top: 30px;

@@ -113,6 +113,7 @@ const Dashboard: React.FC = () => {
                 <strong>Endereço:</strong>
                 <p>{user.address.streat}</p>
               </div>
+              <p>{user.address.city}</p>
             </User>
           ))}
         </Users>

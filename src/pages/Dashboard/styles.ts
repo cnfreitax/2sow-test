@@ -5,7 +5,7 @@ export const Container = styled.div``;
 
 export const Header = styled.header`
   width: 100%;
-  height: 64px;
+  height: 60px;
   padding: 30px;
   background: #792359;
 
@@ -59,10 +59,10 @@ export const Header = styled.header`
 
 export const Content = styled.div`
   width: 100%;
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
 
-  padding: 40px 20px;
+  padding: 0 20px;
 `;
 
 export const Title = styled.h1`
@@ -119,12 +119,12 @@ export const Form = styled.form`
 `;
 
 export const Users = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 24px;
   list-style: none;
-  margin-top: 30px;
-  padding: 30px;
+  margin-top: 50px;
 
   @media (max-width: 700px) {
     display: flex;

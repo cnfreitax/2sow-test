@@ -1,5 +1,11 @@
 import React, { useCallback } from 'react';
-import { FiUser, FiPower, FiSearch, FiTrash2, FiEdit } from 'react-icons/fi';
+import {
+  FiUserPlus,
+  FiPower,
+  FiSearch,
+  FiTrash2,
+  FiEdit,
+} from 'react-icons/fi';
 import { useHistory, Link } from 'react-router-dom';
 
 import {
@@ -13,8 +19,21 @@ import {
   Options,
 } from './styles';
 
+// interface User {
+//   name: string;
+//   cpf: string;
+//   email: string;
+//   address: {
+//     streat: string;
+//     neighborhood: string;
+//     city: string;
+//   };
+// }
+
 const Dashboard: React.FC = () => {
   const history = useHistory();
+
+  // const [users, setUsers] = useState<User[]>([]);
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@2sow:token');
@@ -29,7 +48,7 @@ const Dashboard: React.FC = () => {
 
         <div>
           <Link to="/user-new">
-            <FiUser />
+            <FiUserPlus />
           </Link>
           <button type="button" onClick={signOut}>
             <FiPower />
@@ -68,7 +87,7 @@ const Dashboard: React.FC = () => {
             <strong>Victor Freitas</strong>
             <div>
               <strong>CPF:</strong>
-              <p>655.365.365-85</p>
+              <p>123.214.452.45</p>
             </div>
             <div>
               <strong>E-mail:</strong>
@@ -76,35 +95,7 @@ const Dashboard: React.FC = () => {
             </div>
             <div>
               <strong>Endereço:</strong>
-              <p>Av. Resedá, 235</p>
-            </div>
-          </User>
-          <User>
-            <Options>
-              <button type="button">
-                <FiEdit />
-              </button>
-              <button type="button">
-                <FiTrash2 />
-              </button>
-            </Options>
-
-            <img
-              src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
-              alt="Victor Freitas"
-            />
-            <strong>Victor Freitas</strong>
-            <div>
-              <strong>CPF:</strong>
-              <p>655.365.365-85</p>
-            </div>
-            <div>
-              <strong>E-mail:</strong>
-              <p>victor@gmail.com</p>
-            </div>
-            <div>
-              <strong>Endereço:</strong>
-              <p>Av. Resedá, 235</p>
+              <p>Av Resedá</p>
             </div>
           </User>
 
@@ -125,7 +116,7 @@ const Dashboard: React.FC = () => {
             <strong>Victor Freitas</strong>
             <div>
               <strong>CPF:</strong>
-              <p>655.365.365-85</p>
+              <p>123.214.452.45</p>
             </div>
             <div>
               <strong>E-mail:</strong>
@@ -133,7 +124,7 @@ const Dashboard: React.FC = () => {
             </div>
             <div>
               <strong>Endereço:</strong>
-              <p>Av. Resedá, 235</p>
+              <p>Av Resedá</p>
             </div>
           </User>
 
@@ -154,7 +145,7 @@ const Dashboard: React.FC = () => {
             <strong>Victor Freitas</strong>
             <div>
               <strong>CPF:</strong>
-              <p>655.365.365-85</p>
+              <p>123.214.452.45</p>
             </div>
             <div>
               <strong>E-mail:</strong>
@@ -162,7 +153,7 @@ const Dashboard: React.FC = () => {
             </div>
             <div>
               <strong>Endereço:</strong>
-              <p>Av. Resedá, 235</p>
+              <p>Av Resedá</p>
             </div>
           </User>
         </Users>

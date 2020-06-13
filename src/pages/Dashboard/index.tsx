@@ -21,6 +21,7 @@ import {
 } from './styles';
 
 interface User {
+  id: string;
   name: string;
   cpf: string;
   email: string;
@@ -48,9 +49,9 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const handleDeleteUser = useCallback(
-    (cpf) => {
-      api.delete(`usuarios/${cpf}`);
-      setUsers(users.filter((user) => user.cpf !== cpf));
+    (id) => {
+      api.delete(`usuarios/${id}`);
+      setUsers(users.filter((user) => user.id !== id));
     },
     [users],
   );
@@ -90,10 +91,7 @@ const Dashboard: React.FC = () => {
                 <button type="button">
                   <FiEdit />
                 </button>
-                <button
-                  onClick={() => handleDeleteUser(user.cpf)}
-                  type="button"
-                >
+                <button onClick={() => handleDeleteUser(user.id)} type="button">
                   <FiTrash2 />
                 </button>
               </Options>

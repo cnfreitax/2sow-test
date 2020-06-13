@@ -1,17 +1,7 @@
 {
   "usuarios": [
     {
-      "name": "Victor Freitas",
-      "cpf": "123.545.854.58",
-      "email": "victor@gmail.com",
-      "address": {
-        "cep": "12152-545",
-        "streat": "Av. Resedá",
-        "neighborhood": "Portal dos Ipes",
-        "city": "Cajamar"
-      }
-    },
-    {
+      "id": "2",
       "name": "Beatriz Chequetto",
       "cpf": "524.145.854.58",
       "email": "beatriz@gmail.com",
@@ -23,6 +13,7 @@
       }
     },
     {
+      "id": "3",
       "name": "Pedro Brioso",
       "cpf": "968.536.869.18",
       "email": "pedro@gmail.com",

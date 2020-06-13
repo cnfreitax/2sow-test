@@ -45,6 +45,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     api.get('/usuarios').then((response) => {
       setUsers(response.data);
+      localStorage.setItem('@2sow:list', JSON.stringify(response.data));
     });
   }, []);
 
@@ -109,10 +110,9 @@ const Dashboard: React.FC = () => {
                 <strong>E-mail:</strong>
                 <p>{user.email}</p>
               </div>
-              <div>
-                <strong>Endereço:</strong>
-                <p>{user.address.streat}</p>
-              </div>
+
+              <p>{user.address.streat}</p>
+
               <p>{user.address.city}</p>
             </User>
           ))}

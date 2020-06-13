@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   FiUserPlus,
   FiPower,
@@ -7,6 +7,7 @@ import {
   FiEdit,
 } from 'react-icons/fi';
 import { useHistory, Link } from 'react-router-dom';
+import api from '../../service/api';
 
 import {
   Container,
@@ -19,27 +20,40 @@ import {
   Options,
 } from './styles';
 
-// interface User {
-//   name: string;
-//   cpf: string;
-//   email: string;
-//   address: {
-//     streat: string;
-//     neighborhood: string;
-//     city: string;
-//   };
-// }
+interface User {
+  name: string;
+  cpf: string;
+  email: string;
+  address: {
+    streat: string;
+    neighborhood: string;
+    city: string;
+  };
+}
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
 
-  // const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@2sow:token');
-
     history.push('/');
   }, [history]);
+
+  useEffect(() => {
+    api.get('/usuarios').then((response) => {
+      setUsers(response.data);
+    });
+  }, []);
+
+  const handleDeleteUser = useCallback(
+    (cpf) => {
+      api.delete(`usuarios/${cpf}`);
+      setUsers(users.filter((user) => user.cpf !== cpf));
+    },
+    [users],
+  );
 
   return (
     <Container>
@@ -70,92 +84,39 @@ const Dashboard: React.FC = () => {
         </Form>
 
         <Users>
-          <User>
-            <Options>
-              <button type="button">
-                <FiEdit />
-              </button>
-              <button type="button">
-                <FiTrash2 />
-              </button>
-            </Options>
+          {users.map((user) => (
+            <User key={user.cpf}>
+              <Options>
+                <button type="button">
+                  <FiEdit />
+                </button>
+                <button
+                  onClick={() => handleDeleteUser(user.cpf)}
+                  type="button"
+                >
+                  <FiTrash2 />
+                </button>
+              </Options>
 
-            <img
-              src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
-              alt="Victor Freitas"
-            />
-            <strong>Victor Freitas</strong>
-            <div>
-              <strong>CPF:</strong>
-              <p>123.214.452.45</p>
-            </div>
-            <div>
-              <strong>E-mail:</strong>
-              <p>victor@gmail.com</p>
-            </div>
-            <div>
-              <strong>Endereço:</strong>
-              <p>Av Resedá</p>
-            </div>
-          </User>
-
-          <User>
-            <Options>
-              <button type="button">
-                <FiEdit />
-              </button>
-              <button type="button">
-                <FiTrash2 />
-              </button>
-            </Options>
-
-            <img
-              src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
-              alt="Victor Freitas"
-            />
-            <strong>Victor Freitas</strong>
-            <div>
-              <strong>CPF:</strong>
-              <p>123.214.452.45</p>
-            </div>
-            <div>
-              <strong>E-mail:</strong>
-              <p>victor@gmail.com</p>
-            </div>
-            <div>
-              <strong>Endereço:</strong>
-              <p>Av Resedá</p>
-            </div>
-          </User>
-
-          <User>
-            <Options>
-              <button type="button">
-                <FiEdit />
-              </button>
-              <button type="button">
-                <FiTrash2 />
-              </button>
-            </Options>
-
-            <img
-              src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
-              alt="Victor Freitas"
-            />
-            <strong>Victor Freitas</strong>
-            <div>
-              <strong>CPF:</strong>
-              <p>123.214.452.45</p>
-            </div>
-            <div>
-              <strong>E-mail:</strong>
-              <p>victor@gmail.com</p>
-            </div>
-            <div>
-              <strong>Endereço:</strong>
-              <p>Av Resedá</p>
-            </div>
-          </User>
+              <img
+                src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
+                alt="Victor Freitas"
+              />
+              <strong>{user.name}</strong>
+              <div>
+                <strong>CPF:</strong>
+                <p>{user.cpf}</p>
+              </div>
+              <div>
+                <strong>E-mail:</strong>
+                <p>{user.email}</p>
+              </div>
+              <div>
+                <strong>Endereço:</strong>
+                <p>{user.address.streat}</p>
+              </div>
+            </User>
+          ))}
         </Users>
       </Content>
     </Container>

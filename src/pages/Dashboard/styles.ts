@@ -104,7 +104,7 @@ export const Form = styled.form`
     color: #fff;
     font-weight: bold;
     margin-left: 10px;
-    background: #fd5e81;
+    background: #792359;
     transition: background-color 0.5s;
     &:hover {
       background: ${shade(0.3, '#fd5e81')};
@@ -113,7 +113,7 @@ export const Form = styled.form`
     svg {
       width: 30px;
       height: 30px;
-      color: #792359;
+      color: #fd5e81;
     }
   }
 `;

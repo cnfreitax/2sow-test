@@ -1,19 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {
-  FiUserPlus,
-  FiPower,
-  FiSearch,
-  FiTrash2,
-  FiEdit,
-} from 'react-icons/fi';
-import { useHistory, Link } from 'react-router-dom';
+import { FiSearch, FiTrash2, FiEdit } from 'react-icons/fi';
 import api from '../../service/api';
 
 import { useToast } from '../../hooks/toast';
 
 import {
   Container,
-  Header,
   Content,
   Title,
   Form,
@@ -35,15 +27,9 @@ interface User {
 }
 
 const Dashboard: React.FC = () => {
-  const history = useHistory();
   const { addToast } = useToast();
 
   const [users, setUsers] = useState<User[]>([]);
-
-  const signOut = useCallback(() => {
-    localStorage.removeItem('@2sow:token');
-    history.push('/');
-  }, [history]);
 
   useEffect(() => {
     api.get('/usuarios').then((response) => {
@@ -63,19 +49,6 @@ const Dashboard: React.FC = () => {
 
   return (
     <Container>
-      <Header>
-        <Link to="/">2SowUser</Link>
-
-        <div>
-          <Link to="/user-new">
-            <FiUserPlus />
-          </Link>
-          <button type="button" onClick={signOut}>
-            <FiPower />
-          </button>
-        </div>
-      </Header>
-
       <Content>
         <Title>
           Adicione, liste

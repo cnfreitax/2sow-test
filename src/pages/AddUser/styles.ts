@@ -5,7 +5,7 @@ export const Container = styled.div`
   a {
     visibility: hidden;
     position: absolute;
-    top: 5%;
+    top: 10%;
     margin-left: 20px;
     svg {
       color: #fd5e81;
@@ -25,7 +25,7 @@ export const Content = styled.div`
   max-width: 600px;
   height: 500px;
   margin: 0 auto;
-  padding: 50px 20px;
+  padding: 30px 20px;
 `;
 
 export const Title = styled.h1`

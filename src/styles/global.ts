@@ -9,7 +9,8 @@ export default createGlobalStyle`
 }
 
 body {
-  background: #41292c;
+
+  background: ${(props) => props.theme.colors.background};
 }
 
 body, input, button {

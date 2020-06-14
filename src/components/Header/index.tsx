@@ -34,7 +34,7 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
         </button>
         <Switch
           onChange={toggleTheme}
-          checked={title === 'dark'}
+          checked={title === 'light'}
           height={10}
           width={30}
           handleDiameter={20}

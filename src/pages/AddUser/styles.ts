@@ -32,7 +32,7 @@ export const Title = styled.h1`
   font-size: 30px;
   margin-top: 10px;
   max-width: 300px;
-  color: #fff;
+  color: ${(props) => props.theme.colors.color};
 `;
 
 export const Form = styled.form`
@@ -54,9 +54,10 @@ export const Form = styled.form`
     box-shadow: 0 0 1px rgba(0, 0, 0, 2);
     background: transparent;
     padding: 8px;
+    color: ${(props) => props.theme.colors.color};
 
     &::placeholder {
-      color: #a8a8b3;
+      ${(props) => props.theme.colors.color};
     }
 
     & + input {
@@ -71,7 +72,7 @@ export const Form = styled.form`
     margin-top: 10px;
     border-radius: 0px 5px 5px 0px;
     border: 0;
-    color: #fff;
+    color: ${(props) => props.theme.colors.color};
     font-weight: bold;
     background: #fd5e81;
     transition: background-color 0.5s;

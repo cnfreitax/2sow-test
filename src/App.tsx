@@ -14,7 +14,7 @@ import GlobalStyles from './styles/global';
 import { ToastProvider } from './hooks/toast';
 
 const App: React.FC = () => {
-  const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', dark);
+  const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
   const toggleTheme = () => {
     setTheme(theme.title === 'dark' ? light : dark);
   };
@@ -26,10 +26,10 @@ const App: React.FC = () => {
           <ThemeProvider theme={theme}>
             <Header toggleTheme={toggleTheme} />
             <Routes />
+            <GlobalStyles />
           </ThemeProvider>
         </ToastProvider>
       </BrowserRouter>
-      <GlobalStyles />
     </>
   );
 };

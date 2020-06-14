@@ -15,7 +15,7 @@ export const Title = styled.h1`
   font-size: 30px;
   margin-top: 50px;
   max-width: 300px;
-  color: #fff;
+  color: ${(props) => props.theme.colors.color};
 
   span {
     font-size: 35px;
@@ -32,14 +32,14 @@ export const Form = styled.form`
     height: 70px;
     padding: 0 24px;
     border: 0;
-    color: #fff;
+    color: ${(props) => props.theme.colors.color};
     border-radius: 5px 0 0 5px;
     border: 2px solid transparent;
     box-shadow: 5px 10px 18px rgba(0, 0, 0, 1);
     background: transparent;
 
     &::placeholder {
-      color: #a8a8b3;
+      color: ${(props) => props.theme.colors.color};
     }
   }
   button {
@@ -84,9 +84,9 @@ export const User = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 10px 18px rgba(0, 0, 0, 1);
-  padding: 15px;
+  padding: 10px;
   transition: transform 0.2s;
-  color: #fff;
+  color: ${(props) => props.theme.colors.color};
   line-height: 25px;
   position: relative;
 

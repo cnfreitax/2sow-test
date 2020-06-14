@@ -5,11 +5,15 @@ import Routes from './routes';
 
 import GlobalStyles from './styles/global';
 
+import { ToastProvider } from './hooks/toast';
+
 const App: React.FC = () => {
   return (
     <>
       <BrowserRouter>
-        <Routes />
+        <ToastProvider>
+          <Routes />
+        </ToastProvider>
       </BrowserRouter>
       <GlobalStyles />
     </>

@@ -1,28 +1,3 @@
 {
-  "usuarios": [
-    {
-      "id": "2",
-      "name": "Beatriz Chequetto",
-      "cpf": "524.145.854.58",
-      "email": "beatriz@gmail.com",
-      "address": {
-        "cep": "12342-545",
-        "streat": "Valson Lopes",
-        "neighborhood": "Butantã",
-        "city": "São Paulo"
-      }
-    },
-    {
-      "id": "3",
-      "name": "Pedro Brioso",
-      "cpf": "968.536.869.18",
-      "email": "pedro@gmail.com",
-      "address": {
-        "cep": "13112-545",
-        "streat": "R. Guaipa",
-        "neighborhood": "Leopoldina",
-        "city": "São Paulo"
-      }
-    }
-  ]
+  "usuarios": []
 }

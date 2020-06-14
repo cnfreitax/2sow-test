@@ -9,6 +9,8 @@ import {
 import { useHistory, Link } from 'react-router-dom';
 import api from '../../service/api';
 
+import { useToast } from '../../hooks/toast';
+
 import {
   Container,
   Header,
@@ -34,6 +36,7 @@ interface User {
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
+  const { addToast } = useToast();
 
   const [users, setUsers] = useState<User[]>([]);
 
@@ -53,8 +56,9 @@ const Dashboard: React.FC = () => {
     (id) => {
       api.delete(`usuarios/${id}`);
       setUsers(users.filter((user) => user.id !== id));
+      addToast();
     },
-    [users],
+    [users, addToast],
   );
 
   return (

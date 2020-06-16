@@ -4,6 +4,7 @@ import { shade } from 'polished';
 export const Container = styled.div`
   background: ${(props) => props.theme.colors.background};
   height: 100vh;
+
   > a {
     visibility: hidden;
     position: absolute;
@@ -45,30 +46,21 @@ export const Form = styled.form`
   margin-top: 50px;
   display: flex;
 
-  input {
-    flex: 1;
-    width: 100%;
-
-    padding: 0 24px;
-    border: 0;
-    color: #fff;
-    border-radius: 5px 0 0 5px;
-    border: 1px solid #fd5e81;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 2);
-    background: transparent;
+  button {
+    margin: 2px 0;
     padding: 8px;
+
+    border-radius: 0px 5px 5px 0px;
+    border: 0;
     color: ${(props) => props.theme.colors.color};
 
-    &::placeholder {
-      ${(props) => props.theme.colors.color};
-    }
-
-    & + input {
-      margin-top: 10px;
+    background: #fd5e81;
+    transition: background-color 0.5s;
+    &:hover {
+      background: ${shade(0.3, '#fd5e81')};
     }
   }
-
-  button {
+  > button {
     flex: 1;
     height: 100px;
     padding: 15px;

@@ -1,3 +1,16 @@
 {
-  "usuarios": []
+  "usuarios": [
+    {
+      "id": "3",
+      "name": "Victor Freitas",
+      "cpf": "754.125.854.51",
+      "email": "beatriz@gmail.com",
+      "address": {
+        "cep": "12342-545",
+        "streat": "Valson Lopes",
+        "neighborhood": "Butantã",
+        "city": "São Paulo"
+      }
+    }
+  ]
 }

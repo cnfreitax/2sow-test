@@ -22,6 +22,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-switch": "^5.0.1",
+    "react-via-cep": "^2.0.8",
     "styled-components": "^5.1.1",
     "typescript": "~3.7.2",
     "uuidv4": "^6.1.0",

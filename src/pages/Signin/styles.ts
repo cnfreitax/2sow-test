@@ -6,6 +6,7 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: stretch;
+  background: #41292c;
 `;
 
 export const Content = styled.div`
@@ -54,7 +55,7 @@ export const Content = styled.div`
       margin-top: 20px;
       width: 100%;
       height: 56px;
-      background: #001242;
+      background: #792359;
       border-radius: 4px;
       padding: 0 10px;
       border: 0;
@@ -64,7 +65,7 @@ export const Content = styled.div`
       transition: background-color 0.2s;
 
       &:hover {
-        background: ${shade(0.1, '#001242')};
+        background: ${shade(0.1, '#792359')};
       }
     }
   }

@@ -2,11 +2,14 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
-  a {
+  background: ${(props) => props.theme.colors.background};
+  height: 100vh;
+  > a {
     visibility: hidden;
     position: absolute;
     top: 10%;
     margin-left: 20px;
+
     svg {
       color: #fd5e81;
       width: 20px;

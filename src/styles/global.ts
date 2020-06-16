@@ -8,10 +8,7 @@ export default createGlobalStyle`
   box-sizing: border-box;
 }
 
-body {
 
-  background: ${(props) => props.theme.colors.background};
-}
 
 body, input, button {
   font: 16px 'Roboto', sans-serif;

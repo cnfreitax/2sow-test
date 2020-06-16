@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  background: ${(props) => props.theme.colors.background};
+  height: 100vh;
+`;
 
 export const Content = styled.div`
   width: 100%;

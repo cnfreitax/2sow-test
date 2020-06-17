@@ -80,7 +80,7 @@ export const Title = styled.h1`
   svg {
     margin-right: 8px;
     width: 20px;
-    height: 20px;
+    height: 2px;
   }
 `;
 
@@ -91,6 +91,6 @@ export const Subtitle = styled.h2`
   color: ${(props) => props.theme.colors.color};
 
   span {
-    color: #fd5e81;
+    color: ${(props) => props.theme.colors.secundary};
   }
 `;

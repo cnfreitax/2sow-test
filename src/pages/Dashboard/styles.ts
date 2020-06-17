@@ -68,19 +68,18 @@ export const Form = styled.form<FormProps>`
     height: 70px;
     border-radius: 0px 5px 5px 0px;
     border: 0;
-    color: #fff;
     font-weight: bold;
     margin-left: 10px;
     background: ${(props) => props.theme.colors.primary};
-    transition: background-color 0.5s;
+    transition: opacity 0.5s;
     &:hover {
-      background: ${shade(0.2, '#58a4b0')};
+      opacity: 0.7;
     }
 
     svg {
       width: 30px;
       height: 30px;
-      color: #fd5e81;
+      color: ${(props) => props.theme.colors.secundary};
     }
   }
 `;

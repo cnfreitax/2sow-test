@@ -15,7 +15,7 @@ export const Container = styled.header`
     text-decoration: none;
     font-size: 30px;
     font-weight: 500;
-    color: #fd5e81;
+    color: ${(props) => props.theme.colors.secundary};
   }
 
   div {
@@ -24,14 +24,13 @@ export const Container = styled.header`
       text-decoration: none;
       svg {
         margin-right: 20px;
-        color: #fd5e81;
+        color: ${(props) => props.theme.colors.secundary};
         width: 20px;
         height: 20px;
-        transition: color 0.5s, transform 0.5s;
+        transition: opacity 0.5s;
 
         &:hover {
-          color: ${shade(0.3, '#792359')};
-          transform: translateX(2px);
+          opacity: 0.7;
         }
       }
     }
@@ -42,14 +41,13 @@ export const Container = styled.header`
       margin-right: 15px;
 
       svg {
-        color: #fd5e81;
+        color: ${(props) => props.theme.colors.secundary};
         width: 20px;
         height: 20px;
-        transition: color 0.5s, transform 0.5s;
+        transition: opacity 0.5s;
 
         &:hover {
-          color: ${shade(0.3, '#792359')};
-          transform: translateX(2px);
+          opacity: 0.7;
         }
       }
     }

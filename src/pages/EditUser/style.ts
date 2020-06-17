@@ -76,6 +76,12 @@ export const Title = styled.h1`
   margin-top: 10px;
   max-width: 300px;
   color: ${(props) => props.theme.colors.color};
+
+  svg {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const Subtitle = styled.h2`

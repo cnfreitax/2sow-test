@@ -1,6 +1,13 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { Link, useRouteMatch, useHistory } from 'react-router-dom';
-import { FiArrowLeft, FiUser, FiMail, FiInfo, FiGlobe } from 'react-icons/fi';
+import {
+  FiArrowLeft,
+  FiUser,
+  FiMail,
+  FiInfo,
+  FiGlobe,
+  FiSettings,
+} from 'react-icons/fi';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -74,7 +81,10 @@ const EditUser: React.FC = () => {
         <Header toggleTheme={toggleTheme} />
 
         <Content>
-          <Title>Configurações.</Title>
+          <Title>
+            <FiSettings />
+            Configurações
+          </Title>
           <Subtitle>
             As alterações serão aplicadas para o usuário{' '}
             <span>{params.user}</span>

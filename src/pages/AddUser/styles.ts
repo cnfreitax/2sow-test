@@ -31,6 +31,10 @@ export const Content = styled.div`
   margin: 0 auto;
   padding: 30px 20px;
 
+  @media (max-width: 700px) {
+    margin: 40px auto;
+  }
+
   form {
     display: flex;
     flex-direction: column;
@@ -39,33 +43,18 @@ export const Content = styled.div`
     display: flex;
 
     button {
-      margin: 8px 0;
-      padding: 8px;
-
+      flex: 1;
+      height: 100px;
+      padding: 15px;
+      margin-top: 20px;
       border-radius: 0px 5px 5px 0px;
       border: 0;
       color: ${(props) => props.theme.colors.color};
-
+      font-weight: bold;
       background: ${(props) => props.theme.colors.primary};
-      transition: opacity 0.5s;
+      transition: background-color 0.5s;
       &:hover {
-        opacity: 0.8;
-      }
-
-      button + button {
-        flex: 1;
-        height: 100px;
-        padding: 15px;
-        margin-top: 10px;
-        border-radius: 0px 5px 5px 0px;
-        border: 0;
-        color: ${(props) => props.theme.colors.color};
-        font-weight: bold;
-        background: ${(props) => props.theme.colors.primary};
-        transition: background-color 0.5s;
-        &:hover {
-          background: ${shade(0.3, '#fd5e81')};
-        }
+        background: ${shade(0.3, '#fd5e81')};
       }
     }
   }

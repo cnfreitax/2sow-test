@@ -9,6 +9,26 @@
       "neighborhood": "Portail",
       "city": "Cajamar",
       "id": 1
+    },
+    {
+      "name": "Fernanda Cordeiro",
+      "email": "fernanda@gmail.com",
+      "cpf": "12312312312",
+      "cep": "123451234",
+      "streat": "Rua Rodrigues Alves, 165",
+      "neighborhood": "Ayrosa",
+      "city": "Osasco",
+      "id": 2
+    },
+    {
+      "name": "Beatriz Chequetto",
+      "email": "beatriz@gmail.com",
+      "cpf": "123.1234.1234.12",
+      "cep": "07791045",
+      "streat": "Avenida Resedá",
+      "neighborhood": "Portais (Polvilho)",
+      "city": "Cajamar",
+      "id": 3
     }
   ]
 }

@@ -76,7 +76,7 @@ const AddUser: React.FC = () => {
       });
 
       await api.post('/usuarios', data);
-      history.pushState('/');
+      history.push('/');
     } catch (err) {
       const errors = getValidationErrors(err);
 

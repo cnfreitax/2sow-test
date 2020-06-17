@@ -1,34 +1,14 @@
 {
   "usuarios": [
     {
-      "name": "Fernanda Cordeiro",
-      "email": "fernanda@gmail.com",
-      "cpf": "12312312312",
-      "cep": "123451234",
-      "streat": "Rua Rodrigues Alves, 165",
-      "neighborhood": "Ayrosa",
-      "city": "Osasco",
-      "id": 2
-    },
-    {
-      "name": "Beatriz Chequetto",
-      "email": "beatriz@gmail.com",
-      "cpf": "123.1234.1234.12",
-      "cep": "07791045",
-      "streat": "Avenida Resedá",
+      "name": "Nelcy Cordeiro ",
+      "email": "nelcy@gmail.com",
+      "cpf": "470.881.068-76",
+      "cep": "07791-065",
+      "streat": "Rua Samambaias",
       "neighborhood": "Portais (Polvilho)",
       "city": "Cajamar",
-      "id": 3
-    },
-    {
-      "name": "Fernanda N Freitas",
-      "email": "victorprogr@gmail.com",
-      "cpf": "47088106876",
-      "cep": "06280040",
-      "streat": "Rua Rodrigues Alves, 165",
-      "neighborhood": "Ayrosa",
-      "city": "Osasco",
-      "id": 4
+      "id": 2
     }
   ]
 }

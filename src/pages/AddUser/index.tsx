@@ -18,6 +18,7 @@ import { Container, Content, Title } from './styles';
 import api from '../../service/api';
 import viacep from '../../service/viacep';
 import { cpfMask, cepMask } from '../../utils/maskInput';
+import { useToast } from '../../hooks/toast';
 
 interface AddressProps {
   cep: string;
@@ -42,6 +43,7 @@ interface SubmitiUser {
 
 const AddUser: React.FC = () => {
   const history = useHistory();
+  const { addToast } = useToast();
 
   const formRef = useRef<FormHandles>(null);
 
@@ -59,12 +61,21 @@ const AddUser: React.FC = () => {
   const handleViaCep = useCallback(async () => {
     const treatedCep = cepMask(inputCep);
     setInputCep(treatedCep);
-    await viacep.get<ViaCepResponse>(`${inputCep}/json`).then((response) => {
-      setLocalidade(response.data.localidade);
-      setLogradouro(response.data.logradouro);
-      setBairro(response.data.bairro);
-    });
-  }, [inputCep]);
+
+    try {
+      await viacep.get<ViaCepResponse>(`${inputCep}/json`).then((response) => {
+        setLocalidade(response.data.localidade);
+        setLogradouro(response.data.logradouro);
+        setBairro(response.data.bairro);
+      });
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'CEP Inválido',
+        description: 'Verifique o CEP informado',
+      });
+    }
+  }, [inputCep, addToast]);
 
   const handleSubmit = useCallback(
     async (data: SubmitiUser) => {
@@ -87,6 +98,12 @@ const AddUser: React.FC = () => {
         });
 
         await api.post('/usuarios', data);
+
+        addToast({
+          type: 'success',
+          title: 'Sucesso!',
+          description: 'Usuário foi adicionado à sua lista',
+        });
         history.push('/');
       } catch (err) {
         const errors = getValidationErrors(err);
@@ -94,7 +111,7 @@ const AddUser: React.FC = () => {
         formRef.current?.setErrors(errors);
       }
     },
-    [history],
+    [history, addToast],
   );
 
   const handleCpfMask = useCallback(() => {
@@ -127,6 +144,7 @@ const AddUser: React.FC = () => {
               onChange={(e) => setInputCep(e.target.value)}
               onBlur={handleViaCep}
               icon={FiGlobe}
+              maxLength={9}
               placeholder="CEP"
             />
 

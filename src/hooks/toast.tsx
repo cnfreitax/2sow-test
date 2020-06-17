@@ -1,48 +1,57 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useCallback, useState } from 'react';
 import { uuid } from 'uuidv4';
-
 import ToastContainer from '../components/ToastContainer';
 
-interface ToastContext {
-  addToast(): void;
+interface ToastContextData {
+  addToast(message: Omit<ToastMessages, 'id'>): void;
   removeToast(id: string): void;
 }
 
-export interface ToastMessage {
+export interface ToastMessages {
   id: string;
+  type?: 'success' | 'error' | 'info';
+  title: string;
+  description?: string;
 }
 
-const Toast = createContext<ToastContext>({} as ToastContext);
+const ToastContext = createContext<ToastContextData>({} as ToastContextData);
 
 const ToastProvider: React.FC = ({ children }) => {
-  const [messages, setMessages] = useState<ToastMessage[]>([]);
-  const addToast = useCallback(() => {
-    const id = uuid();
+  const [messages, setMessages] = useState<ToastMessages[]>([]);
 
-    const toast = {
-      id,
-    };
+  const addToast = useCallback(
+    ({ type, title, description }: Omit<ToastMessages, 'id'>) => {
+      const id = uuid();
 
-    setMessages([...messages, toast]);
-  }, [messages]);
+      const toast = {
+        id,
+        type,
+        title,
+        description,
+      };
+
+      setMessages((state) => [...state, toast]);
+    },
+    [],
+  );
 
   const removeToast = useCallback((id: string) => {
     setMessages((state) => state.filter((message) => message.id !== id));
   }, []);
 
   return (
-    <Toast.Provider value={{ addToast, removeToast }}>
+    <ToastContext.Provider value={{ addToast, removeToast }}>
       {children}
       <ToastContainer messages={messages} />
-    </Toast.Provider>
+    </ToastContext.Provider>
   );
 };
 
-function useToast(): ToastContext {
-  const context = useContext(Toast);
+function useToast(): ToastContextData {
+  const context = useContext(ToastContext);
 
   if (!context) {
-    throw new Error('useToas muste be used with a ToastProvider');
+    throw new Error('useToast must be used within an ToasProvider');
   }
 
   return context;

@@ -80,7 +80,11 @@ const Dashboard: React.FC = () => {
     (id) => {
       api.delete(`usuarios/${id}`);
       setUsers(users.filter((user) => user.id !== id));
-      addToast();
+      addToast({
+        type: 'info',
+        title: 'Usuário removido',
+        description: `Usuário foi removido de sua lista`,
+      });
     },
     [users, addToast],
   );

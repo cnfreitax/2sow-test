@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState, FormEvent } from 'react';
 import { FiSearch, FiTrash2, FiEdit } from 'react-icons/fi';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
+import { Link } from 'react-router-dom';
 import api from '../../service/api';
 
 import { useToast } from '../../hooks/toast';
@@ -29,6 +30,9 @@ interface User {
   cpf: string;
   email: string;
   city: string;
+  cep: string;
+  streat: string;
+  neighborhood: string;
 }
 
 const Dashboard: React.FC = () => {
@@ -108,9 +112,11 @@ const Dashboard: React.FC = () => {
             {userResult.map((user) => (
               <UserSearch key={user.cpf}>
                 <Options>
-                  <button type="button">
+                  <Link
+                    to={`user-edit/${user.name}/${user.email}/${user.cpf}/${user.id}/${user.cep}/${user.city}/${user.streat}/${user.neighborhood}`}
+                  >
                     <FiEdit />
-                  </button>
+                  </Link>
                   <button
                     onClick={() => handleDeleteUser(user.id)}
                     type="button"
@@ -148,9 +154,11 @@ const Dashboard: React.FC = () => {
                     <td>{user.cpf}</td>
                     <td>{user.city}</td>
                     <td style={{ textAlign: 'center' }}>
-                      <button type="button">
+                      <Link
+                        to={`user-edit/${user.name}/${user.email}/${user.cpf}/${user.id}/${user.cep}/${user.city}/${user.streat}/${user.neighborhood}`}
+                      >
                         <FiEdit />
-                      </button>
+                      </Link>
                     </td>
                     <td style={{ textAlign: 'center' }}>
                       <button

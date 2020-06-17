@@ -29,6 +29,7 @@
       "react-hooks/rules-of-hooks": "error",
       "react/prop-types": "off",
       "no-shadow":"off",
+      "react/jsx-one-expression-per-line": "off",
       "react/jsx-props-no-spreading": "off",
       "react-hooks/exhaustive-deps": "warn",
       "no-unused-expressions": "off",

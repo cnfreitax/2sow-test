@@ -135,7 +135,20 @@ export const Users = styled.div`
     @media (max-width: 700px) {
       max-width: 60px;
     }
+    a {
+      text-decoration: none;
 
+      svg {
+        color: #c53030;
+
+        width: 20px;
+        height: 20px;
+
+        &:hover {
+          color: ${shade(0.3, '#c53030')};
+        }
+      }
+    }
     button {
       background: transparent;
       border: 0;
@@ -207,9 +220,22 @@ export const Options = styled.div`
   position: absolute;
   top: 10px;
   right: 0;
+  margin-right: 8px;
 
-  > button {
+  a {
+    text-decoration: none;
     margin-right: 5px;
+
+    svg {
+      color: #c53030;
+
+      width: 20px;
+      height: 20px;
+
+      &:hover {
+        color: ${shade(0.3, '#c53030')};
+      }
+    }
   }
 
   button {

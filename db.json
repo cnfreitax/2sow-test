@@ -1,16 +1,6 @@
 {
   "usuarios": [
     {
-      "name": "Victor Gabriel",
-      "email": "victorprogr@gmail.com",
-      "cpf": "126.325.325.35",
-      "cep": "74492.245",
-      "streat": "Av. Resedá ",
-      "neighborhood": "Portail",
-      "city": "Cajamar",
-      "id": 1
-    },
-    {
       "name": "Fernanda Cordeiro",
       "email": "fernanda@gmail.com",
       "cpf": "12312312312",
@@ -29,6 +19,16 @@
       "neighborhood": "Portais (Polvilho)",
       "city": "Cajamar",
       "id": 3
+    },
+    {
+      "name": "Fernanda N Freitas",
+      "email": "victorprogr@gmail.com",
+      "cpf": "47088106876",
+      "cep": "06280040",
+      "streat": "Rua Rodrigues Alves, 165",
+      "neighborhood": "Ayrosa",
+      "city": "Osasco",
+      "id": 4
     }
   ]
 }

@@ -105,6 +105,7 @@ const EditUser: React.FC = () => {
             />
             <Input
               name="cpf"
+              readOnly
               value={params.cpf}
               icon={FiInfo}
               placeholder="CPF"

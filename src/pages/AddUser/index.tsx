@@ -17,6 +17,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { Container, Content, Title } from './styles';
 import api from '../../service/api';
 import viacep from '../../service/viacep';
+import { cpfMask, cepMask } from '../../utils/maskInput';
 
 interface AddressProps {
   cep: string;
@@ -48,6 +49,7 @@ const AddUser: React.FC = () => {
   const [localidade, setLocalidade] = useState('');
   const [logradouro, setLogradouro] = useState('');
   const [bairro, setBairro] = useState('');
+  const [cpfInput, setCpfInput] = useState('');
 
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
   const toggleTheme = () => {
@@ -55,6 +57,8 @@ const AddUser: React.FC = () => {
   };
 
   const handleViaCep = useCallback(async () => {
+    const treatedCep = cepMask(inputCep);
+    setInputCep(treatedCep);
     await viacep.get<ViaCepResponse>(`${inputCep}/json`).then((response) => {
       setLocalidade(response.data.localidade);
       setLogradouro(response.data.logradouro);
@@ -67,13 +71,17 @@ const AddUser: React.FC = () => {
       try {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
-          name: Yup.string().required('Por favor digite um nome.'),
+          name: Yup.string().required('Campo obrigatório.'),
           email: Yup.string()
-            .required('Obrigatório')
+            .required('Campo obrigatório')
             .email('Formato incorreto'),
-          cpf: Yup.string().required('CPF obrigatório'),
-          cep: Yup.string().required('CEP obrigatório'),
+          cpf: Yup.string().required('Campo obrigatório'),
+          cep: Yup.string().required('Campo obrigatório'),
+          streat: Yup.string().required('Campo obrigatório'),
+          neighborhood: Yup.string().required('Campo obrigatório'),
+          city: Yup.string().required('Campo obrigatório'),
         });
+
         await schema.validate(data, {
           abortEarly: false,
         });
@@ -88,6 +96,11 @@ const AddUser: React.FC = () => {
     },
     [history],
   );
+
+  const handleCpfMask = useCallback(() => {
+    const treatedCpf = cpfMask(cpfInput);
+    setCpfInput(treatedCpf);
+  }, [cpfInput]);
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -97,13 +110,16 @@ const AddUser: React.FC = () => {
           <Title>Adicione um novo usuário.</Title>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input name="name" icon={FiUser} placeholder="Nome" />
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
             <Input
-              name="email"
-              icon={FiMail}
-              type="email"
-              placeholder="E-mail"
+              name="cpf"
+              value={cpfInput}
+              onChange={(e) => setCpfInput(e.target.value)}
+              onBlur={handleCpfMask}
+              icon={FiInfo}
+              maxLength={14}
+              placeholder="CPF"
             />
-            <Input name="cpf" icon={FiInfo} placeholder="CPF" />
 
             <Input
               name="cep"

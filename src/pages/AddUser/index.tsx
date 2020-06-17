@@ -62,27 +62,32 @@ const AddUser: React.FC = () => {
     });
   }, [inputCep]);
 
-  const handleSubmit = useCallback(async (data: SubmitiUser) => {
-    try {
-      formRef.current?.setErrors({});
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Por favor digite um nome.'),
-        email: Yup.string().required('Obrigatório').email('Formato incorreto'),
-        cpf: Yup.string().required('CPF obrigatório'),
-        cep: Yup.string().required('CEP obrigatório'),
-      });
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+  const handleSubmit = useCallback(
+    async (data: SubmitiUser) => {
+      try {
+        formRef.current?.setErrors({});
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Por favor digite um nome.'),
+          email: Yup.string()
+            .required('Obrigatório')
+            .email('Formato incorreto'),
+          cpf: Yup.string().required('CPF obrigatório'),
+          cep: Yup.string().required('CEP obrigatório'),
+        });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      await api.post('/usuarios', data);
-      history.push('/');
-    } catch (err) {
-      const errors = getValidationErrors(err);
+        await api.post('/usuarios', data);
+        history.push('/');
+      } catch (err) {
+        const errors = getValidationErrors(err);
 
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [history],
+  );
   return (
     <ThemeProvider theme={theme}>
       <Container>

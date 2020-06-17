@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, FormEvent } from 'react';
 import { FiSearch, FiTrash2, FiEdit } from 'react-icons/fi';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import api from '../../service/api';
@@ -16,8 +16,10 @@ import {
   Content,
   Title,
   Form,
+  Error,
   Users,
-  User,
+  SubTitle,
+  UserSearch,
   Options,
 } from './styles';
 
@@ -26,11 +28,7 @@ interface User {
   name: string;
   cpf: string;
   email: string;
-  address: {
-    streat: string;
-    neighborhood: string;
-    city: string;
-  };
+  city: string;
 }
 
 const Dashboard: React.FC = () => {
@@ -42,6 +40,9 @@ const Dashboard: React.FC = () => {
   const { addToast } = useToast();
 
   const [users, setUsers] = useState<User[]>([]);
+  const [userSearchInput, setUserSearchInput] = useState('');
+  const [inputError, setInputError] = useState('');
+  const [userResult, setUserResult] = useState<User[]>([]);
 
   useEffect(() => {
     api.get('/usuarios').then((response) => {
@@ -49,6 +50,27 @@ const Dashboard: React.FC = () => {
       localStorage.setItem('@2sow:list', JSON.stringify(response.data));
     });
   }, []);
+
+  const handleSearchUser = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      setInputError('');
+      if (!userSearchInput) {
+        setInputError('Digite um nome');
+        return;
+      }
+
+      try {
+        api.get(`/usuarios?name=${userSearchInput}`).then((response) => {
+          setUserResult(response.data);
+          setUserSearchInput('');
+        });
+      } catch (err) {
+        setInputError('Usuário não encontrado');
+      }
+    },
+    [userSearchInput, setInputError],
+  );
 
   const handleDeleteUser = useCallback(
     (id) => {
@@ -69,16 +91,22 @@ const Dashboard: React.FC = () => {
             <span> & </span>
             explore por usuários cadastrados
           </Title>
-          <Form>
-            <input type="text" placeholder="Digite um nome" />
-            <button type="button">
+          <Form hasError={!!inputError} onSubmit={handleSearchUser}>
+            <input
+              value={userSearchInput}
+              onChange={(e) => setUserSearchInput(e.target.value)}
+              type="text"
+              placeholder="Digite um nome"
+            />
+            <button type="submit">
               <FiSearch />
             </button>
           </Form>
+          {inputError && <Error>{inputError}</Error>}
 
           <Users>
-            {users.map((user) => (
-              <User key={user.cpf}>
+            {userResult.map((user) => (
+              <UserSearch key={user.cpf}>
                 <Options>
                   <button type="button">
                     <FiEdit />
@@ -90,11 +118,6 @@ const Dashboard: React.FC = () => {
                     <FiTrash2 />
                   </button>
                 </Options>
-
-                <img
-                  src="https://avatars1.githubusercontent.com/u/60153670?s=460&u=3a96de007817cfdaff15e19a7897b7f640b2022a&v=4"
-                  alt="Victor Freitas"
-                />
                 <strong>{user.name}</strong>
                 <div>
                   <strong>CPF:</strong>
@@ -104,12 +127,43 @@ const Dashboard: React.FC = () => {
                   <strong>E-mail:</strong>
                   <p>{user.email}</p>
                 </div>
-
-                <p>{user.address.streat}</p>
-
-                <p>{user.address.city}</p>
-              </User>
+                <p>{user.city}</p>
+              </UserSearch>
             ))}
+
+            <SubTitle>Seus usuários:</SubTitle>
+
+            <table>
+              <tbody>
+                <tr>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>CPF</th>
+                  <th>Cidade</th>
+                </tr>
+                {users.map((user) => (
+                  <tr key={user.id}>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{user.cpf}</td>
+                    <td>{user.city}</td>
+                    <td style={{ textAlign: 'center' }}>
+                      <button type="button">
+                        <FiEdit />
+                      </button>
+                    </td>
+                    <td style={{ textAlign: 'center' }}>
+                      <button
+                        onClick={() => handleDeleteUser(user.id)}
+                        type="button"
+                      >
+                        <FiTrash2 />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </Users>
         </Content>
       </Container>

@@ -23,7 +23,7 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
 
   return (
     <Container>
-      <Link to="/">2SowUser</Link>
+      <Link to="/">MyUsers</Link>
 
       <div>
         <Link to="/user-new">

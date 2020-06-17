@@ -1,9 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { shade } from 'polished';
+
+interface FormProps {
+  hasError: boolean;
+}
 
 export const Container = styled.div`
   background: ${(props) => props.theme.colors.background};
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 export const Content = styled.div`
@@ -12,6 +16,7 @@ export const Content = styled.div`
   margin: 0 auto;
 
   padding: 0 20px;
+  position: relative;
 `;
 
 export const Title = styled.h1`
@@ -26,7 +31,14 @@ export const Title = styled.h1`
   }
 `;
 
-export const Form = styled.form`
+export const SubTitle = styled.h1`
+  font-size: 25px;
+  margin-top: 20px;
+  max-width: 300px;
+  color: ${(props) => props.theme.colors.color};
+`;
+
+export const Form = styled.form<FormProps>`
   margin-top: 40px;
   width: 100%;
   display: flex;
@@ -40,6 +52,12 @@ export const Form = styled.form`
     border: 2px solid transparent;
     box-shadow: 5px 10px 18px rgba(0, 0, 0, 1);
     background: transparent;
+
+    ${(props) =>
+      props.hasError &&
+      css`
+        border-color: #c53030;
+      `}
 
     &::placeholder {
       color: ${(props) => props.theme.colors.color};
@@ -66,11 +84,17 @@ export const Form = styled.form`
     }
   }
 `;
+export const Error = styled.span`
+  display: block;
+  color: #c53030;
+  margin-top: 8px;
+  font-size: 20px;
+`;
 
 export const Users = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
   grid-gap: 24px;
   list-style: none;
   margin-top: 50px;
@@ -79,9 +103,58 @@ export const Users = styled.div`
     display: flex;
     flex-direction: column;
   }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+
+    margin-bottom: 40px;
+  }
+
+  td,
+  th {
+    border: 1px solid ${(props) => props.theme.colors.color};
+    text-align: left;
+    padding: 8px;
+    color: #fd5e81;
+    font-size: 1rem;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fd5e81;
+  }
+
+  td {
+    color: ${(props) => props.theme.colors.color};
+    font-size: 1em;
+
+    @media (width: 1015px) {
+      max-width: 150px;
+    }
+    @media (max-width: 700px) {
+      max-width: 60px;
+    }
+
+    button {
+      background: transparent;
+      border: 0;
+
+      svg {
+        color: #c53030;
+
+        width: 20px;
+        height: 20px;
+
+        &:hover {
+          color: ${shade(0.3, '#c53030')};
+        }
+      }
+    }
+  }
 `;
 
-export const User = styled.div`
+export const UserSearch = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,6 +166,16 @@ export const User = styled.div`
   line-height: 25px;
   position: relative;
 
+  &::before {
+    position: absolute;
+    height: 80%;
+    width: 4px;
+    left: 0;
+    top: 10%;
+    content: '';
+    background: #fd5e81;
+  }
+
   @media (max-width: 700px) {
     & + div {
       margin-top: 15px;
@@ -102,14 +185,6 @@ export const User = styled.div`
   &:hover {
     transform: translateX(5px);
   }
-  img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 10px;
-
-    border-radius: 50%;
-  }
-
   > strong {
     font-size: 20px;
   }
@@ -122,7 +197,8 @@ export const User = styled.div`
     display: flex;
 
     strong {
-      margin-right: 5px;
+      margin-right: 2px;
+      flex: 1;
     }
   }
 `;

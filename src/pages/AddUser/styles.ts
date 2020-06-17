@@ -39,17 +39,17 @@ export const Content = styled.div`
     display: flex;
 
     button {
-      margin: 2px 0;
+      margin: 8px 0;
       padding: 8px;
 
       border-radius: 0px 5px 5px 0px;
       border: 0;
       color: ${(props) => props.theme.colors.color};
 
-      background: #fd5e81;
-      transition: background-color 0.5s;
+      background: ${(props) => props.theme.colors.primary};
+      transition: opacity 0.5s;
       &:hover {
-        background: ${shade(0.3, '#fd5e81')};
+        opacity: 0.8;
       }
 
       button + button {
@@ -61,7 +61,7 @@ export const Content = styled.div`
         border: 0;
         color: ${(props) => props.theme.colors.color};
         font-weight: bold;
-        background: #fd5e81;
+        background: ${(props) => props.theme.colors.primary};
         transition: background-color 0.5s;
         &:hover {
           background: ${shade(0.3, '#fd5e81')};

@@ -50,7 +50,7 @@ export const Form = styled.form<FormProps>`
     color: ${(props) => props.theme.colors.color};
     border-radius: 5px 0 0 5px;
     border: 2px solid transparent;
-    box-shadow: 5px 10px 18px rgba(0, 0, 0, 1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 1);
     background: transparent;
 
     ${(props) =>
@@ -71,10 +71,10 @@ export const Form = styled.form<FormProps>`
     color: #fff;
     font-weight: bold;
     margin-left: 10px;
-    background: #792359;
+    background: ${(props) => props.theme.colors.primary};
     transition: background-color 0.5s;
     &:hover {
-      background: ${shade(0.3, '#fd5e81')};
+      background: ${shade(0.2, '#58a4b0')};
     }
 
     svg {
@@ -122,7 +122,7 @@ export const Users = styled.div`
   }
 
   tr:nth-child(even) {
-    background-color: #fd5e81;
+    background-color: ${(props) => props.theme.colors.primary};
   }
 
   td {

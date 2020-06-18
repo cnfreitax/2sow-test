@@ -116,9 +116,8 @@ export const Users = styled.div`
     border: 1px solid ${(props) => props.theme.colors.color};
     text-align: left;
     padding: 8px;
-    color: #fff;
     letter-spacing: 2px;
-
+    color: ${(props) => props.theme.colors.secundary};
     font-size: 1rem;
     font-weight: 5px;
   }

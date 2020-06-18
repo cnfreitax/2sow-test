@@ -39,7 +39,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
 
     button {

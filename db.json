@@ -1,3 +1,14 @@
 {
-  "usuarios": []
+  "usuarios": [
+    {
+      "name": "Victor Freitas",
+      "email": "victorprogr@gmail.com",
+      "cpf": "125.445.225-53",
+      "cep": "07791-045",
+      "streat": "Avenida Resedá",
+      "neighborhood": "Portais (Polvilho)",
+      "city": "Cajamar",
+      "id": 2
+    }
+  ]
 }

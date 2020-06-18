@@ -116,8 +116,11 @@ export const Users = styled.div`
     border: 1px solid ${(props) => props.theme.colors.color};
     text-align: left;
     padding: 8px;
-    color: #fd5e81;
+    color: #fff;
+    letter-spacing: 2px;
+
     font-size: 1rem;
+    font-weight: 5px;
   }
 
   tr:nth-child(even) {

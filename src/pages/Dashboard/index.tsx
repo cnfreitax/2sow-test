@@ -146,10 +146,10 @@ const Dashboard: React.FC = () => {
             <table>
               <tbody>
                 <tr>
-                  <th>Nome</th>
-                  <th>Email</th>
+                  <th>NOME</th>
+                  <th>EMAIL</th>
                   <th>CPF</th>
-                  <th>Cidade</th>
+                  <th>CIDADE</th>
                 </tr>
                 {users.map((user) => (
                   <tr key={user.id}>

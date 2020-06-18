@@ -1,14 +1,3 @@
 {
-  "usuarios": [
-    {
-      "name": "Victor Dev",
-      "email": "victorprogr@gmail.com",
-      "cpf": "122.547.884-65",
-      "cep": "07791-045",
-      "streat": "Avenida Resedá",
-      "neighborhood": "Portais (Polvilho)",
-      "city": "Cajamar",
-      "id": 1
-    }
-  ]
+  "usuarios": []
 }

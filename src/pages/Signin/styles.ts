@@ -25,8 +25,8 @@ export const Content = styled.div`
     text-align: center;
 
     img {
-      width: 86px;
-      height: 86px;
+      width: 180px;
+      height: 180px;
     }
 
     h1 {

@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import InputLogin from '../../components/InputLogin';
 import { useToast } from '../../hooks/toast';
 
-import logo from '../../assets/login.svg';
+import logo from '../../assets/logo.svg';
 
 import { Container, Content, Background } from './styles';
 

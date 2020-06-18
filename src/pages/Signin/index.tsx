@@ -1,17 +1,31 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { uuid } from 'uuidv4';
 import { useHistory } from 'react-router-dom';
+import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
+
+import InputLogin from '../../components/InputLogin';
+import { useToast } from '../../hooks/toast';
 
 import logo from '../../assets/login.svg';
 
-import { Container, Content, Background, Error } from './styles';
+import { Container, Content, Background } from './styles';
+
+interface SubmitUser {
+  email: string;
+  password: string;
+}
 
 const Signin: React.FC = () => {
   const history = useHistory();
+  const { addToast } = useToast();
+
+  const formRef = useRef<FormHandles>(null);
 
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
-  const [hasError, setHasError] = useState('');
+  // const [hasError, setHasError] = useState('');
 
   useEffect(() => {
     const hasToken = localStorage.getItem('@2sow:token');
@@ -21,42 +35,53 @@ const Signin: React.FC = () => {
     }
   }, [history]);
 
-  async function handleValidateUser(
-    event: FormEvent<HTMLFormElement>,
-  ): Promise<void> {
-    event.preventDefault();
+  const handleLogin = useCallback(
+    async (data: SubmitUser) => {
+      try {
+        formRef.current?.setErrors({});
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('Campo Obrigatório')
+            .email('Formato não é válido'),
+          password: Yup.string().min(4, 'Senha incorreta'),
+        });
 
-    if (!inputEmail || !inputPassword) {
-      setHasError('Verifique suas credenciais');
-      return;
-    }
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-    if (inputPassword.length < 6) {
-      setHasError('A senha deve conter mais de 6 digitos');
-      return;
-    }
-    const token = uuid();
-    localStorage.setItem('@2sow:token', token);
+        const token = uuid();
+        localStorage.setItem('@2sow:token', token);
 
-    history.push('/dashboard');
-  }
+        history.push('/dashboard');
+      } catch (err) {
+        addToast({
+          type: 'error',
+          title: 'Erro no login!',
+          description: 'Verifique suas credenciais',
+        });
+      }
+    },
+    [history, addToast],
+  );
 
   return (
     <Container>
       <Background />
       <Content>
-        <form onSubmit={handleValidateUser}>
+        <Form ref={formRef} onSubmit={handleLogin}>
           <img src={logo} alt="Login" />
 
           <h1>Login</h1>
 
-          <input
-            type="email"
+          <InputLogin
+            name="email"
             value={inputEmail}
             onChange={(e) => setInputEmail(e.target.value)}
             placeholder="E-mail"
           />
-          <input
+          <InputLogin
+            name="password"
             type="password"
             value={inputPassword}
             onChange={(e) => setInputPassword(e.target.value)}
@@ -64,9 +89,7 @@ const Signin: React.FC = () => {
           />
 
           <button type="submit">Entrar</button>
-
-          {hasError && <Error>{hasError}</Error>}
-        </form>
+        </Form>
       </Content>
     </Container>
   );

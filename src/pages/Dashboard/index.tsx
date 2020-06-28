@@ -47,11 +47,13 @@ const Dashboard: React.FC = () => {
   const [userSearchInput, setUserSearchInput] = useState('');
   const [inputError, setInputError] = useState('');
   const [userResult, setUserResult] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     api.get('/usuarios').then((response) => {
       setUsers(response.data);
       localStorage.setItem('@2sow:list', JSON.stringify(response.data));
+      setIsLoading(false);
     });
   }, []);
 

@@ -29,7 +29,7 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
         <Link to="/user-new">
           <FiUserPlus />
         </Link>
-        <button type="button" onClick={signOut}>
+        <button type="button" data-testid="button-logout" onClick={signOut}>
           <FiPower />
         </button>
         <Switch

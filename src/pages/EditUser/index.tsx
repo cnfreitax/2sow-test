@@ -11,6 +11,7 @@ import {
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import { PassThrouthLoading } from 'react-loadingg';
 import Header from '../../components/Header';
 import { useToast } from '../../hooks/toast';
 import { cepMask } from '../../utils/maskInput';
@@ -21,7 +22,7 @@ import usePersistedState from '../../utils/usePersistedState';
 
 import Input from '../../components/Input';
 
-import { Container, Content, Title, Subtitle } from './style';
+import { Container, Content, Title, Subtitle, LoadingContainer } from './style';
 import api from '../../service/api';
 import viacep from '../../service/viacep';
 
@@ -65,6 +66,7 @@ const EditUser: React.FC = () => {
   const [localidade, setLocalidade] = useState(`${params.city}`);
   const [logradouro, setLogradouro] = useState(`${params.streat}`);
   const [bairro, setBairro] = useState(`${params.neighborhood}`);
+  const [loadUser, setLoadUser] = useState(false);
 
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
   const toggleTheme = () => {
@@ -98,6 +100,7 @@ const EditUser: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: SubmitUser) => {
+      setLoadUser(true);
       try {
         await api.patch(`usuarios/${params.id}`, data);
 
@@ -109,6 +112,7 @@ const EditUser: React.FC = () => {
 
         history.push('/');
       } catch (err) {
+        setLoadUser(false);
         addToast({
           type: 'error',
           title: 'Erro nas configurações',
@@ -187,6 +191,16 @@ const EditUser: React.FC = () => {
               placeholder="Cidade"
             />
             <button type="submit">Aplicar</button>
+            {loadUser && (
+              <LoadingContainer>
+                <PassThrouthLoading
+                  size="large"
+                  color="#792359"
+                  speed={0}
+                  style={{ textAlign: 'center' }}
+                />
+              </LoadingContainer>
+            )}
           </Form>
         </Content>
         <Link to="/">

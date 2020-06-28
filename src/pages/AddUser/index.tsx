@@ -5,6 +5,7 @@ import { ThemeProvider, DefaultTheme } from 'styled-components';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { PassThrouthLoading } from 'react-loadingg';
 import Header from '../../components/Header';
 
 import dark from '../../styles/themes/dark';
@@ -14,7 +15,7 @@ import usePersistedState from '../../utils/usePersistedState';
 import Input from '../../components/Input';
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import { Container, Content, Title } from './styles';
+import { Container, Content, Title, LoadingContainer } from './styles';
 import api from '../../service/api';
 import viacep from '../../service/viacep';
 import { cpfMask, cepMask } from '../../utils/maskInput';
@@ -52,6 +53,7 @@ const AddUser: React.FC = () => {
   const [logradouro, setLogradouro] = useState('');
   const [bairro, setBairro] = useState('');
   const [cpfInput, setCpfInput] = useState('');
+  const [loadUser, setLoadUser] = useState(false);
 
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
   const toggleTheme = () => {
@@ -79,6 +81,7 @@ const AddUser: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: SubmitiUser) => {
+      setLoadUser(true);
       try {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
@@ -168,6 +171,16 @@ const AddUser: React.FC = () => {
               placeholder="Cidade"
             />
             <button type="submit">Adicionar</button>
+            {loadUser && (
+              <LoadingContainer>
+                <PassThrouthLoading
+                  size="large"
+                  color="#792359"
+                  speed={0}
+                  style={{ textAlign: 'center' }}
+                />
+              </LoadingContainer>
+            )}
           </Form>
         </Content>
         <Link to="/">

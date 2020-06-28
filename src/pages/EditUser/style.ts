@@ -81,3 +81,12 @@ export const Subtitle = styled.h2`
     color: ${(props) => props.theme.colors.secundary};
   }
 `;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 20px 20px;
+
+  align-items: center;
+  justify-content: center;
+`;

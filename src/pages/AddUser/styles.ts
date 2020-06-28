@@ -66,3 +66,12 @@ export const Title = styled.h1`
   max-width: 300px;
   color: ${(props) => props.theme.colors.color};
 `;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 20px 20px;
+
+  align-items: center;
+  justify-content: center;
+`;

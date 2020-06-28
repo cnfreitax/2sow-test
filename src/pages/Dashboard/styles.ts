@@ -33,7 +33,7 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.h1`
   font-size: 25px;
-  margin-top: 20px;
+  margin-top: 10px;
   max-width: 300px;
   color: ${(props) => props.theme.colors.color};
 `;
@@ -215,6 +215,16 @@ export const UserSearch = styled.div`
       flex: 1;
     }
   }
+`;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  width: 100%;
+  position: absolute;
+  padding: 20px 20px;
+
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Options = styled.div`

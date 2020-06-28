@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, FormEvent } from 'react';
 import { FiSearch, FiTrash2, FiEdit } from 'react-icons/fi';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { PassThrouthLoading } from 'react-loadingg';
 import api from '../../service/api';
 
 import { useToast } from '../../hooks/toast';
@@ -21,6 +22,7 @@ import {
   Users,
   SubTitle,
   UserSearch,
+  LoadingContainer,
   Options,
 } from './styles';
 
@@ -60,6 +62,7 @@ const Dashboard: React.FC = () => {
   const handleSearchUser = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
+      setIsLoading(true);
       setInputError('');
       if (!userSearchInput) {
         setInputError('Digite um nome');
@@ -70,6 +73,7 @@ const Dashboard: React.FC = () => {
         api.get(`/usuarios?name=${userSearchInput}`).then((response) => {
           setUserResult(response.data);
           setUserSearchInput('');
+          setIsLoading(false);
         });
       } catch (err) {
         setInputError('Usuário não encontrado');
@@ -113,6 +117,16 @@ const Dashboard: React.FC = () => {
             </button>
           </Form>
           {inputError && <Error>{inputError}</Error>}
+          {isLoading && (
+            <LoadingContainer>
+              <PassThrouthLoading
+                size="large"
+                color="#792359"
+                speed={0}
+                style={{ textAlign: 'center' }}
+              />
+            </LoadingContainer>
+          )}
 
           <Users>
             {userResult.map((user) => (

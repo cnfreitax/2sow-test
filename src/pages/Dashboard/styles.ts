@@ -265,3 +265,46 @@ export const Options = styled.div`
     }
   }
 `;
+
+export const UsersContainer = styled.div`
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 24px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
+
+export const UserCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 10px 18px rgba(0, 0, 0, 1);
+  padding: 10px;
+  transition: transform 0.2s;
+  color: ${(props) => props.theme.colors.color};
+  line-height: 25px;
+  position: relative;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  transition: transform 0.2;
+
+  &:hover {
+    transform: translateX(5px);
+  }
+
+  div {
+    display: flex;
+    float: left;
+
+    p {
+      margin-left: 5px;
+    }
+  }
+`;

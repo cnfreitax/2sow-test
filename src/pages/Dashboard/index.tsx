@@ -24,6 +24,8 @@ import {
   UserSearch,
   LoadingContainer,
   Options,
+  UsersContainer,
+  UserCard,
 } from './styles';
 
 interface User {
@@ -52,7 +54,7 @@ const Dashboard: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    api.get('/usuarios').then((response) => {
+    api.get('/usuarios?_sort=name').then((response) => {
       setUsers(response.data);
       localStorage.setItem('@2sow:list', JSON.stringify(response.data));
       setIsLoading(false);
@@ -112,6 +114,7 @@ const Dashboard: React.FC = () => {
               type="text"
               placeholder="Digite um nome"
             />
+
             <button type="submit">
               <FiSearch />
             </button>
@@ -159,39 +162,35 @@ const Dashboard: React.FC = () => {
 
             <SubTitle>Seus usuários:</SubTitle>
 
-            <table>
-              <tbody>
-                <tr>
-                  <th>NOME</th>
-                  <th>EMAIL</th>
-                  <th>CPF</th>
-                  <th>CIDADE</th>
-                </tr>
-                {users.map((user) => (
-                  <tr key={user.id}>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.cpf}</td>
-                    <td>{user.city}</td>
-                    <td style={{ textAlign: 'center' }}>
-                      <Link
-                        to={`user-edit/${user.name}/${user.email}/${user.cpf}/${user.id}/${user.cep}/${user.city}/${user.streat}/${user.neighborhood}`}
-                      >
-                        <FiEdit />
-                      </Link>
-                    </td>
-                    <td style={{ textAlign: 'center' }}>
-                      <button
-                        onClick={() => handleDeleteUser(user.id)}
-                        type="button"
-                      >
-                        <FiTrash2 />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <UsersContainer>
+              {users.map((user) => (
+                <UserCard key={user.id}>
+                  <Options>
+                    <Link
+                      to={`user-edit/${user.name}/${user.email}/${user.cpf}/${user.id}/${user.cep}/${user.city}/${user.streat}/${user.neighborhood}`}
+                    >
+                      <FiEdit />
+                    </Link>
+                    <button
+                      onClick={() => handleDeleteUser(user.id)}
+                      type="button"
+                    >
+                      <FiTrash2 />
+                    </button>
+                  </Options>
+                  <strong>{user.name}</strong>
+                  <p>{user.email}</p>
+                  <div>
+                    <strong>CPF:</strong>
+                    <p>{user.cpf}</p>
+                  </div>
+                  <div>
+                    <strong>Cidade:</strong>
+                    <p>{user.city}</p>
+                  </div>
+                </UserCard>
+              ))}
+            </UsersContainer>
           </Users>
         </Content>
       </Container>

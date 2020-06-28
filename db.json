@@ -2,23 +2,33 @@
   "usuarios": [
     {
       "name": "Victor Freitas",
-      "email": "victorgmail@gmail.com",
-      "cpf": "470.811.268-46",
+      "email": "victor@gmail.com",
+      "cpf": "044.587.654-56",
       "cep": "07791-045",
       "streat": "Avenida Resedá",
       "neighborhood": "Portais (Polvilho)",
       "city": "Cajamar",
-      "id": 4
+      "id": 1
     },
     {
-      "name": "Victor Gabriel",
-      "email": "victorgabriel@gmail.com",
-      "cpf": "245.224.521-45",
+      "name": "Cristina Amorin",
+      "email": "cristina@gmail.com",
+      "cpf": "451.415.412-65",
       "cep": "07791-045",
       "streat": "Avenida Resedá",
       "neighborhood": "Portais (Polvilho)",
       "city": "Cajamar",
-      "id": 5
+      "id": 3
+    },
+    {
+      "name": "Fernanda Freitas",
+      "email": "victorprogr@gmail.com",
+      "cpf": "521.551.552-55",
+      "cep": "06280-040",
+      "streat": "Rua Rodrigues Alves, 165",
+      "neighborhood": "Ayrosa",
+      "city": "Osasco",
+      "id": 4
     }
   ]
 }
